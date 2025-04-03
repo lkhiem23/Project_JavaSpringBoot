@@ -6,17 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import lombok.Data;
 
-@Table(name = "PRODUCT")
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "PRODUCT")
+@Data
 public class Product {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
+    @Column(name = "ID")
     private Long id;
 
     @Column(name = "NAME", length = 500)
@@ -32,15 +35,15 @@ public class Product {
     private String image;
 
     @Column(name = "IDCATEGORY")
-    private Long idCategory;
+    private Long categoryId;
 
     @Column(name = "CONTENTS", columnDefinition = "TEXT")
     private String contents;
 
     @Column(name = "PRICE")
-    private Double price;
+    private BigDecimal price;
 
-    @Column(name = "QUATITY")
+    @Column(name = "QUANTITY")
     private Integer quantity;
 
     @Column(name = "SLUG", length = 160)
@@ -70,8 +73,9 @@ public class Product {
     private Long updatedBy;
 
     @Column(name = "ISDELETE")
-    private Byte isDelete;
+    private Boolean isDelete;
 
     @Column(name = "ISACTIVE")
-    private Byte isActive;
+    private Boolean isActive;
+
 }

@@ -7,9 +7,9 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CATEGORY")
+@Table(name = "NEWS_CATEGORY")
 @Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
-public class Category {
+public class NewsCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
@@ -25,8 +25,9 @@ public class Category {
     @Column(name = "ICON", length = 250)
     private String icon;
 
-    @Column(name = "IDPARENT")
-    private Long idParent;
+    @ManyToOne
+    @JoinColumn(name = "IDPARENT", referencedColumnName = "ID")
+    private NewsCategory parentCategory;  // Quan hệ cha con với chính bảng này (Self-referencing)
 
     @Column(name = "SLUG", length = 160)
     private String slug;
@@ -34,10 +35,10 @@ public class Category {
     @Column(name = "META_TITLE", length = 100)
     private String metaTitle;
 
-    @Column(name = "META_KEYWORD", length = 300)
+    @Column(name = "META_KEYWORD", length = 500)
     private String metaKeyword;
 
-    @Column(name = "META_DESCRIPTION", length = 300)
+    @Column(name = "META_DESCRIPTION", length = 500)
     private String metaDescription;
 
     @Column(name = "CREATED_DATE")

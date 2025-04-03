@@ -1,44 +1,30 @@
 package com.lehoaikhiem.entity;
 
+
 import jakarta.persistence.*;
-import lombok.*;
-import java.util.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CATEGORY")
+@Table(name = "TRANSPORT_METHOD")
 @Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
-public class Category {
+public class TransportMethod {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NAME", length = 500)
+    @Column(name = "NAME", length = 250)
     private String name;
 
     @Column(name = "NOTES", columnDefinition = "TEXT")
     private String notes;
-
-    @Column(name = "ICON", length = 250)
-    private String icon;
-
-    @Column(name = "IDPARENT")
-    private Long idParent;
-
-    @Column(name = "SLUG", length = 160)
-    private String slug;
-
-    @Column(name = "META_TITLE", length = 100)
-    private String metaTitle;
-
-    @Column(name = "META_KEYWORD", length = 300)
-    private String metaKeyword;
-
-    @Column(name = "META_DESCRIPTION", length = 300)
-    private String metaDescription;
 
     @Column(name = "CREATED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -48,12 +34,6 @@ public class Category {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDate;
 
-    @Column(name = "CREATED_BY")
-    private Long createdBy;
-
-    @Column(name = "UPDATED_BY")
-    private Long updatedBy;
-
     @Column(name = "ISDELETE")
     private Boolean isDelete;
 
@@ -61,3 +41,4 @@ public class Category {
     private Boolean isActive;
 
 }
+

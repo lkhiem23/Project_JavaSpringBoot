@@ -2,14 +2,14 @@ package com.lehoaikhiem.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.*;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "CATEGORY")
+@Table(name = "NEWS")
 @Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
-public class Category {
+public class News {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
@@ -19,14 +19,18 @@ public class Category {
     @Column(name = "NAME", length = 500)
     private String name;
 
-    @Column(name = "NOTES", columnDefinition = "TEXT")
-    private String notes;
+    @Column(name = "DESCRIPTION", columnDefinition = "TEXT")
+    private String description;
 
-    @Column(name = "ICON", length = 250)
-    private String icon;
+    @Column(name = "IMAGE", length = 550)
+    private String image;
 
-    @Column(name = "IDPARENT")
-    private Long idParent;
+    @ManyToOne
+    @JoinColumn(name = "IDNEWSCATEGORY", referencedColumnName = "ID", nullable = false)
+    private NewsCategory newsCategory;  // Assuming you have a NewsCategory entity class
+
+    @Column(name = "CONTENTS", columnDefinition = "TEXT")
+    private String contents;
 
     @Column(name = "SLUG", length = 160)
     private String slug;
@@ -34,10 +38,10 @@ public class Category {
     @Column(name = "META_TITLE", length = 100)
     private String metaTitle;
 
-    @Column(name = "META_KEYWORD", length = 300)
+    @Column(name = "META_KEYWORD", length = 500)
     private String metaKeyword;
 
-    @Column(name = "META_DESCRIPTION", length = 300)
+    @Column(name = "META_DESCRIPTION", length = 500)
     private String metaDescription;
 
     @Column(name = "CREATED_DATE")

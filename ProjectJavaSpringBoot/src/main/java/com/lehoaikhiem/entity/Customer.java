@@ -4,20 +4,24 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import lombok.Data;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "CUSTOMER")
-@Getter
-@Setter
+@Data
 public class Customer {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
+    @Column(name = "ID")
     private Long id;
 
     @Column(name = "NAME", length = 250)
     private String name;
 
-    @Column(name = "USERNAME", length = 50)
+    @Column(name = "USERNAME", length = 50, unique = true)
     private String username;
 
     @Column(name = "PASSWORD", length = 32)
@@ -50,8 +54,9 @@ public class Customer {
     private Long updatedBy;
 
     @Column(name = "ISDELETE")
-    private Byte isDelete;
+    private Boolean isDelete;
 
     @Column(name = "ISACTIVE")
-    private Byte isActive;
+    private Boolean isActive;
+
 }

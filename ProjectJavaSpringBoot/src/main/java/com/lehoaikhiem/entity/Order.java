@@ -5,10 +5,11 @@ import lombok.*;
 
 import java.util.Date;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "ORDERS")
-@Getter
-@Setter
+@Data
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +22,8 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date ordersDate;
 
-    @Column(name = "IDCUSTOMER")
-    private Long idCustomer;
+    @Column(name = "IDCUSTOMER", insertable = false, updatable = false)
+    private Long idCustomer;  // Không cần cập nhật, chỉ để tham chiếu
 
     @Column(name = "IDPAYMENT")
     private Long idPayment;
@@ -53,4 +54,9 @@ public class Order {
 
     @Column(name = "ISACTIVE")
     private Byte isActive;
+
+    // Thiết lập quan hệ với bảng users
+    @ManyToOne
+    @JoinColumn(name = "IDCUSTOMER", referencedColumnName = "id")
+    private User user;
 }
