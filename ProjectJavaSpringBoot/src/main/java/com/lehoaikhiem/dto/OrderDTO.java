@@ -20,9 +20,8 @@ public class OrderDTO {
 
     private BigDecimal totalAmount;  // Tổng tiền
 
-    private String paymentMethod;    // Tên phương thức thanh toán (ví dụ: VNPay, Momo, COD,...)
-    private String transportMethod;  // Phương thức vận chuyển (GHN, GHTK...)
-
+    private String paymentMethod;
+    private String transportMethod;
     private String status;           // Trạng thái đơn hàng (Đang xử lý, Đã giao, Hủy,...)
 
     private Date createdDate;
