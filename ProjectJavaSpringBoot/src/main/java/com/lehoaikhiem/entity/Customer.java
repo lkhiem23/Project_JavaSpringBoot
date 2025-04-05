@@ -33,7 +33,7 @@ public class Customer {
     @Column(name = "EMAIL", length = 150)
     private String email;
 
-    @Column(name = "PHONE", length = 50)
+    @Column(name = "PHONE", length = 15)
     private String phone;
 
     @Column(name = "AVATAR", length = 250)
