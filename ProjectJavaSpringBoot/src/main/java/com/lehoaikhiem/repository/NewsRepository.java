@@ -9,7 +9,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     List<News> findByNameContaining(String name);
 
     // Tìm tin tức theo danh mục
-    List<News> findByCategoryId(Long categoryId);
+    List<News> findByNewsCategory_Id(Long categoryId);
 
     // Tìm tin tức theo trạng thái hoạt động
     List<News> findByIsActive(Boolean isActive);
