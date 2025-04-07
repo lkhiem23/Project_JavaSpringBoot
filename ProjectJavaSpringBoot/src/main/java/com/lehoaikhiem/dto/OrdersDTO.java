@@ -1,13 +1,13 @@
 package com.lehoaikhiem.dto;
 
-import com.lehoaikhiem.entity.Order;
+import com.lehoaikhiem.entity.Orders;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-public class OrderDTO {
+public class OrdersDTO {
     private Long id;
 
     @NotNull(message = "ID khách hàng không được để trống")
@@ -27,13 +27,13 @@ public class OrderDTO {
     private Date createdDate;
 
     // Danh sách chi tiết đơn hàng
-    private List<OrderDetailsDTO> orderDetails;
+    private List<OrdersDetailDTO> orderDetails;
 
     // Dành cho admin/quản lý đơn hàng
     private Boolean isDelete;  // Đánh dấu mềm đơn hàng
 }
-interface OrderMapper{
-    OrderDTO toDto(Order order);
-    Order toEntity(OrderDTO orderDTO);
-    List<OrderDTO> toDtoList(List<Order> list);
+interface OrdersMapper {
+    OrdersDTO toDto(Orders orders);
+    Orders toEntity(OrdersDTO ordersDTO);
+    List<OrdersDTO> toDtoList(List<Orders> list);
 }

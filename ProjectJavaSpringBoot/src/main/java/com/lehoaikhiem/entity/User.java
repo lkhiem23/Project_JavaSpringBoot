@@ -21,5 +21,5 @@ public class User {
     private String role; // ADMIN, USER
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Order> orders;
+    private List<Orders> orders;
 }

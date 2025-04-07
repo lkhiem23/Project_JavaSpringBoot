@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "ORDERS_DETAILS")
 @Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
-public class OrderDetails {
+public class OrdersDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
@@ -18,7 +18,7 @@ public class OrderDetails {
 
     @ManyToOne
     @JoinColumn(name = "IDORD", referencedColumnName = "ID", nullable = false)
-    private Order order;  // Assuming you have an Order entity class representing the ORDER table
+    private Orders order;  // Assuming you have an Orders entity class representing the ORDER table
 
     @ManyToOne
     @JoinColumn(name = "IDPRODUCT", referencedColumnName = "ID", nullable = false)

@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class OrderDetailsDTO {
+public class OrdersDetailDTO {
     private Long id;
 
     @NotNull(message = "ID đơn hàng không được để trống")
