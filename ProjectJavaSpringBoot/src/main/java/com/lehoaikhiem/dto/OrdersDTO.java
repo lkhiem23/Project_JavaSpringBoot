@@ -32,8 +32,3 @@ public class OrdersDTO {
     // Dành cho admin/quản lý đơn hàng
     private Boolean isDelete;  // Đánh dấu mềm đơn hàng
 }
-interface OrdersMapper {
-    OrdersDTO toDto(Orders orders);
-    Orders toEntity(OrdersDTO ordersDTO);
-    List<OrdersDTO> toDtoList(List<Orders> list);
-}
