@@ -32,15 +32,6 @@ public class NewsCategoryService {
         return newCategoryMapper.toNewsCategoryDTO(newCategoryRepository.save(entity));
     }
 
-    public NewsCategoryDTO update(Long id, NewsCategoryDTO dto) {
-        if (newCategoryRepository.existsById(id)) {
-            NewsCategory entity = newCategoryMapper.toNewsCategory(dto);
-            entity.setId(id);
-            return newCategoryMapper.toNewsCategoryDTO(newCategoryRepository.save(entity));
-        }
-        return null;
-    }
-
     public void delete(Long id) {
         newCategoryRepository.deleteById(id);
     }

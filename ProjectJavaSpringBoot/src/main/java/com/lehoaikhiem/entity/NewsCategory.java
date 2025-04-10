@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.*;
 
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "NEWS_CATEGORY")
-@Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
 public class NewsCategory {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
     @Column(name = "ID")
