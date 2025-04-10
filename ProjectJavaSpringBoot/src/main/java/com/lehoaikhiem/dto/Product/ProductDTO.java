@@ -1,12 +1,10 @@
-package com.lehoaikhiem.dto;
+package com.lehoaikhiem.dto.Product;
 
-import com.lehoaikhiem.entity.Product;
 import jakarta.validation.constraints.*;
 import lombok.Data;
-import org.mapstruct.Mapper;
+
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 @Data
 public class ProductDTO {
@@ -37,11 +35,4 @@ public class ProductDTO {
     // Admin có thể thay đổi isDelete và isActive
     private Boolean isDelete;
     private Boolean isActive;
-}
-
-@Mapper(componentModel = "spring")
-interface ProductMapper {
-    ProductDTO toDto(Product product);
-    Product toEntity(ProductDTO dto);
-    List<ProductDTO> toDtoList(List<Product> list);
 }

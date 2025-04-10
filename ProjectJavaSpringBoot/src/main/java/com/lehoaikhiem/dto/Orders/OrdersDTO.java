@@ -1,6 +1,6 @@
-package com.lehoaikhiem.dto;
+package com.lehoaikhiem.dto.Orders;
 
-import com.lehoaikhiem.entity.Orders;
+import com.lehoaikhiem.dto.OrdersDetail.OrdersDetailDTO;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;

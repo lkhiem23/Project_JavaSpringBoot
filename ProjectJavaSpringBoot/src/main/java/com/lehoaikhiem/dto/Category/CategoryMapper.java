@@ -1,4 +1,4 @@
-package com.lehoaikhiem.dto;
+package com.lehoaikhiem.dto.Category;
 
 import com.lehoaikhiem.entity.Category;
 import org.mapstruct.Mapper;

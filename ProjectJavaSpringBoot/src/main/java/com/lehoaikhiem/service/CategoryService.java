@@ -1,7 +1,7 @@
 package com.lehoaikhiem.service;
 
-import com.lehoaikhiem.dto.CategoryDTO;
-import com.lehoaikhiem.dto.CategoryMapper;
+import com.lehoaikhiem.dto.Category.CategoryDTO;
+import com.lehoaikhiem.dto.Category.CategoryMapper;
 import com.lehoaikhiem.entity.Category;
 import com.lehoaikhiem.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

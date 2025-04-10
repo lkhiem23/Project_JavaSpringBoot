@@ -1,7 +1,7 @@
 package com.lehoaikhiem.service;
 
-import com.lehoaikhiem.dto.NewsCategoryDTO;
-import com.lehoaikhiem.dto.NewsCategoryMapper;
+import com.lehoaikhiem.dto.NewsCategory.NewsCategoryDTO;
+import com.lehoaikhiem.dto.NewsCategory.NewsCategoryMapper;
 import com.lehoaikhiem.entity.NewsCategory;
 import com.lehoaikhiem.repository.NewsCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

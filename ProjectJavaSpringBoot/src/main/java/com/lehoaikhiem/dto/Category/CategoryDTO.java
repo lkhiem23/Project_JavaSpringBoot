@@ -1,4 +1,4 @@
-package com.lehoaikhiem.dto;
+package com.lehoaikhiem.dto.Category;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

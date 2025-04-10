@@ -8,7 +8,8 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table(name = "ORDERS_DETAILS")
-@Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
+@Getter
+@Setter
 public class OrdersDetail {
 
     @Id

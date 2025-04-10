@@ -1,4 +1,4 @@
-package com.lehoaikhiem.dto;
+package com.lehoaikhiem.dto.Customer;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.lehoaikhiem.dto;
+package com.lehoaikhiem.dto.OrdersDetail;
 
 import jakarta.validation.constraints.NotNull;
 
