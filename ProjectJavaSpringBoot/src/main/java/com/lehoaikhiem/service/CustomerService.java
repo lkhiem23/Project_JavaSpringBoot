@@ -19,7 +19,7 @@ public class CustomerService {
     @Autowired
     private CustomerMapper customerMapper;
 
-    public List<NewsCategoryDTO> findAll(){
+    public List<CustomerDTO> findAll(){
         return customerMapper.toDtoList(customerRepository.findAll());
     }
 
@@ -29,7 +29,7 @@ public class CustomerService {
     }
 
     public CustomerDTO save(CustomerDTO customerDTO){
-        Customer customer = customerMapper.toCustomer(customerDTO);
+        Customer customer = customerMapper.toEntity(customerDTO);
         return customerMapper.toCustomerDTO(customerRepository.save(customer));
     }
 
