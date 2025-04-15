@@ -4,6 +4,7 @@ import com.lehoaikhiem.dto.TransportMethod.TransportMethodDTO;
 import com.lehoaikhiem.dto.TransportMethod.TransportMethodMapper;
 import com.lehoaikhiem.entity.TransportMethod;
 import com.lehoaikhiem.repository.TransportMethodRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,11 @@ public class TransportMethodService {
     }
 
     public TransportMethodDTO findById(Long id) {
-        Optional<TransportMethod> transportMethod = transportMethodRepository.findById(id);
-        return transportMethod.map(transportMethodMapper::toDto).orElse(null);
+        TransportMethod entity = transportMethodRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Transport method not found with ID: " + id));
+        return transportMethodMapper.toDto(entity);
     }
+
 
     public TransportMethodDTO save(TransportMethodDTO transportMethodDTO) {
         TransportMethod transportMethod = transportMethodMapper.toEntity(transportMethodDTO);
@@ -33,6 +36,10 @@ public class TransportMethodService {
     }
 
     public void deleteById(Long id) {
+        if (!transportMethodRepository.existsById(id)) {
+            throw new EntityNotFoundException("Transport method not found with ID: " + id);
+        }
         transportMethodRepository.deleteById(id);
     }
+
 }
