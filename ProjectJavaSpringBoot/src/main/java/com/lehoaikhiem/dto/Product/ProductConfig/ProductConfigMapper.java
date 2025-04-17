@@ -10,17 +10,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ProductConfigMapper {
-    @Mappings({
-            @Mapping(source = "product.id", target = "productId"),
-            @Mapping(source = "config.id", target = "configId")
-    })
-    ProductConfigDTO toDto(ProductConfig entity);
-
-    @Mappings({
-            @Mapping(source = "productId", target = "product.id"),
-            @Mapping(source = "configId", target = "config.id")
-    })
-    ProductConfig toEntity(ProductConfigDTO dto);
-
-    List<ProductConfigDTO> toDtoList(List<ProductConfig> entityList);
+    ProductConfigDTO toDto(ProductConfig productConfig);
+    List<ProductConfigDTO> toDtoList(List<ProductConfig> productConfigList);
+    ProductConfig toEntity(ProductConfigDTO productConfigDTO);
 }

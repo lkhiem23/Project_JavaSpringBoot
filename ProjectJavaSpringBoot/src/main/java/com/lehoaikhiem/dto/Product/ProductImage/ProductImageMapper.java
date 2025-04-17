@@ -9,15 +9,11 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ProductImageMapper {
-    @Mappings({
-            @Mapping(source = "product.id", target = "productId") // Map nested product to productId
-    })
-    ProductImageDTO toDto(ProductImage entity);
 
-    @Mappings({
-            @Mapping(source = "productId", target = "product.id") // Map productId to product object
-    })
-    ProductImage toEntity(ProductImageDTO dto);
+    // Chuyển đổi từ ProductImage entity sang ProductImageDTO
+    ProductImageDTO toDto(ProductImage productImage);
 
-    List<ProductImageDTO> toDtoList(List<ProductImage> list);
+    // Chuyển đổi danh sách ProductImage entity sang danh sách ProductImageDTO
+    List<ProductImageDTO> toDtoList(List<ProductImage> productImages);
 }
+

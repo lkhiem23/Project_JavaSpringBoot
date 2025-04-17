@@ -9,7 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "PRODUCT_CONFIG")
-@Data
+@Getter
+@Setter
 public class ProductConfig {
 
     @Id
@@ -27,4 +28,8 @@ public class ProductConfig {
 
     @Column(name = "VALUE", columnDefinition = "TEXT")
     private String value;
+
+    public Long getId() {
+        return id;
+    }
 }
