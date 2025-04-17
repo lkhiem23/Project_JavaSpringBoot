@@ -2,7 +2,6 @@ package com.lehoaikhiem.service;
 
 import com.lehoaikhiem.dto.Product.ProductConfig.ProductConfigDTO;
 import com.lehoaikhiem.dto.Product.ProductConfig.ProductConfigMapper;
-import com.lehoaikhiem.entity.Configuration;
 import com.lehoaikhiem.entity.ProductConfig;
 import com.lehoaikhiem.repository.ProductConfigRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductConfigService {

@@ -78,5 +78,10 @@ public class ProductImageService {
         return productImageMapper.toDto(productImageRepository.save(entity));
     }
 
-
+    public void deleteById(Long id) {
+        if (!productImageRepository.existsById(id)) {
+            throw new EntityNotFoundException("No ProductImage found with id: " + id);
+        }
+        productImageRepository.deleteById(id);
+    }
 }
