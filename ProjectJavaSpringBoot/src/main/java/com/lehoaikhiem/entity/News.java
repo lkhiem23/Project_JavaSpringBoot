@@ -9,6 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "NEWS")
 @Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
+@Builder(toBuilder = true)
 public class News {
 
     @Id

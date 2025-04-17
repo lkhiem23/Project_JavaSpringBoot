@@ -7,7 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "PRODUCT_IMAGES")
-@Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
+@Data
+@Builder(toBuilder = true)
 public class ProductImage {
 
     @Id

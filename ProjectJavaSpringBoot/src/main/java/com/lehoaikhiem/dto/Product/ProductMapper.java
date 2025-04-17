@@ -1,7 +1,7 @@
 package com.lehoaikhiem.dto.Product;
 
 import com.lehoaikhiem.entity.Product;
-import org.mapstruct.Mapper;
+import org.mapstruct.*;
 
 import java.util.List;
 @Mapper(componentModel = "spring")
