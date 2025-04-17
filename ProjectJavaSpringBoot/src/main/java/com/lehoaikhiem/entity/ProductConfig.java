@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "PRODUCT_CONFIG")
-@Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
+@Data
 public class ProductConfig {
 
     @Id
