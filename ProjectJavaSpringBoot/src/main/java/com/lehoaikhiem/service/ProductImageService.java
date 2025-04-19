@@ -4,7 +4,6 @@ import com.lehoaikhiem.dto.Product.ProductImage.ProductImageDTO;
 import com.lehoaikhiem.dto.Product.ProductImage.ProductImageMapper;
 import com.lehoaikhiem.dto.Product.ProductMapper;
 import com.lehoaikhiem.entity.Product;
-import com.lehoaikhiem.entity.ProductConfig;
 import com.lehoaikhiem.entity.ProductImage;
 import com.lehoaikhiem.repository.ProductImageRepository;
 import com.lehoaikhiem.repository.ProductRepository;
