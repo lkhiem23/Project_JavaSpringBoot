@@ -2,13 +2,17 @@ package com.lehoaikhiem.dto.News;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class NewsDTO {
     private Long id;
 
@@ -51,4 +55,6 @@ public class NewsDTO {
     private Boolean isDelete;
 
     private Boolean isActive;
+
+
 }
