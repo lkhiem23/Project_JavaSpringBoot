@@ -29,7 +29,4 @@ public class ProductConfig {
     @Column(name = "VALUE", columnDefinition = "TEXT")
     private String value;
 
-    public Long getId() {
-        return id;
-    }
 }
