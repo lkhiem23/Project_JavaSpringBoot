@@ -89,5 +89,7 @@ public class NewsService {
         }
         return newsMapper.toDtoList(entities);
     }
-
+    public long countAllNews() {
+        return newsRepository.count();
+    }
 }

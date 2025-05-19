@@ -37,5 +37,7 @@ public class OrderService {
     public void delete(Long id){
         orderRepository.deleteById(id);
     }
-
+    public long countAllOrders() {
+        return orderRepository.count();
+    }
 }

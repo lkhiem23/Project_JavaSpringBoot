@@ -42,6 +42,8 @@ public class ProductService {
         }
         productRepository.deleteById(id);
     }
-
+    public long countAllProducts() {
+        return productRepository.count();
+    }
 
 }
