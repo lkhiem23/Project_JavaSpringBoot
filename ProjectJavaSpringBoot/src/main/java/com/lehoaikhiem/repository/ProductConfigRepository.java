@@ -19,4 +19,6 @@ public interface ProductConfigRepository extends JpaRepository<ProductConfig, Lo
     // Custom query: search by keyword in value
     @Query("SELECT pc FROM ProductConfig pc WHERE LOWER(pc.value) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<ProductConfig> searchByValueKeyword(String keyword);
+
+
 }

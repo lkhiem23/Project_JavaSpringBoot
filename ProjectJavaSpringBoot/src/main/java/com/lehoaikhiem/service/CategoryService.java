@@ -4,6 +4,7 @@ import com.lehoaikhiem.dto.Category.CategoryDTO;
 import com.lehoaikhiem.dto.Category.CategoryMapper;
 import com.lehoaikhiem.entity.Category;
 import com.lehoaikhiem.repository.CategoryRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,9 @@ public class CategoryService {
     }
 
     public void deleteById(Long id) {
+        if (!categoryRepository.existsById(id)) {
+            throw new EntityNotFoundException("Product method not found with ID: " + id);
+        }
         categoryRepository.deleteById(id);
     }
 

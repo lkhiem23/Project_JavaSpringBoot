@@ -1,6 +1,8 @@
 package com.lehoaikhiem.repository;
 
 import com.lehoaikhiem.entity.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,18 +10,20 @@ import java.util.*;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    // Tìm kiếm theo tên sản phẩm
-    List<Product> findByNameContaining(String name);
+    Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
+    
+    // Find by Name
+    List<Product> findByNameContainingIgnoreCase(String name);
 
-    // Tìm kiếm theo danh mục sản phẩm
+    // Find by ID
     List<Product> findByCategoryId(Long categoryId);
 
-    // Tìm kiếm sản phẩm theo giá (từ giá thấp đến cao)
+    // Find by Price (Low -> High)
     List<Product> findByPriceBetween(Double minPrice, Double maxPrice);
 
-    // Tìm sản phẩm với tên chứa từ khóa và danh mục cụ thể
+    // Find by keyword in value
     List<Product> findByNameContainingAndCategoryId(String name, Long categoryId);
 
-    // Tìm sản phẩm theo slug
+    // Find by slug
     Optional<Product> findBySlug(String slug);
 }
