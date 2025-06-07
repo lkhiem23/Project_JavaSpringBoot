@@ -37,7 +37,6 @@ public class AdminHomeController {
         map.put("totalProducts", productService.countAllProducts());
         map.put("totalCustomers", customerService.countAllCustomers());
         map.put("totalNews", newsService.countAllNews());
-
         return ResponseEntity.ok(map);
     }
 }

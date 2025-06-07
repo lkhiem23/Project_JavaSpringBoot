@@ -42,11 +42,12 @@ public class CategoryService {
         return null;
     }
 
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         categoryRepository.deleteById(id);
     }
 
     public List<CategoryDTO> findByName(String name) {
         return categoryMapper.toDtoList(categoryRepository.findByNameContainingIgnoreCase(name));
     }
+
 }

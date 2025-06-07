@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+		<relativePath/> </parent>
 	<groupId>com.lehoaikhiem</groupId>
 	<artifactId>ProjectJavaSpringBoot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -28,6 +27,8 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version> <org.projectlombok.version>1.18.32</org.projectlombok.version>
+		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -69,7 +70,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>${org.projectlombok.version}</version> <optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -81,22 +82,17 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- MapStruct Dependency -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.5.2.Final</version>
-		</dependency>
+			<version>${org.mapstruct.version}</version> </dependency>
 
-		<!-- MapStruct Processor Dependency (dùng cho annotation processing) -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>
-			<version>1.5.2.Final</version>
-			<scope>provided</scope>
+			<version>${org.mapstruct.version}</version> <scope>provided</scope>
 		</dependency>
 
-		<!-- Spring Boot Starter để hỗ trợ MapStruct (optional) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -108,25 +104,35 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>21</source>
-					<target>21</target>
-					<annotationProcessorPaths>
-						<annotationProcessorPath>
-							<groupId>org.mapstruct</groupId>
-							<artifactId>mapstruct-processor</artifactId>
-							<version>1.5.2.Final</version>
-						</annotationProcessorPath>
-						<annotationProcessorPath>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-							<version>1.18.32</version>
-						</annotationProcessorPath>
-					</annotationProcessorPaths>
-				</configuration>
+				<version>3.11.0</version> <configuration>
+				<source>${java.version}</source>
+				<target>${java.version}</target>
+				<annotationProcessorPaths>
+					<annotationProcessorPath>
+						<groupId>org.mapstruct</groupId>
+						<artifactId>mapstruct-processor</artifactId>
+						<version>${org.mapstruct.version}</version>
+					</annotationProcessorPath>
+					<annotationProcessorPath>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok</artifactId>
+						<version>${org.projectlombok.version}</version>
+					</annotationProcessorPath>
+					<annotationProcessorPath>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok-mapstruct-binding</artifactId>
+						<version>${lombok-mapstruct-binding.version}</version>
+					</annotationProcessorPath>
+				</annotationProcessorPaths>
+				<compilerArgs>
+					<compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
+				</compilerArgs>
+			</configuration>
 			</plugin>
-
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 
