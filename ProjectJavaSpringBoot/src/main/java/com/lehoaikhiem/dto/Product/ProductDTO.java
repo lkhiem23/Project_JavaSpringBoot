@@ -22,7 +22,7 @@ public class ProductDTO {
 
     private String contents;
     private BigDecimal price;
-    private Integer quatity;
+    private Integer quantity;
     private String slug;
     private String metaTitle;
     private String metaKeyword;

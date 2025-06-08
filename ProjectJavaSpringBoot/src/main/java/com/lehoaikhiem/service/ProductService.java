@@ -63,6 +63,8 @@ public class ProductService {
     public long countAllProducts() {
         return productRepository.count();
     }
-
+    public List<ProductDTO> findByName(String name) {
+        return productMapper.toDtoList(productRepository.findByNameContainingIgnoreCase(name));
+    }
 
 }

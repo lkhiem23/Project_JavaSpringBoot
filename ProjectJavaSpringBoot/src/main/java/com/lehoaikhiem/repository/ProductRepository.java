@@ -11,7 +11,7 @@ import java.util.*;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
-    
+
     // Find by Name
     List<Product> findByNameContainingIgnoreCase(String name);
 

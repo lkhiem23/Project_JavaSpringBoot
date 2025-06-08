@@ -53,5 +53,8 @@ public class CategoryService {
     public List<CategoryDTO> findByName(String name) {
         return categoryMapper.toDtoList(categoryRepository.findByNameContainingIgnoreCase(name));
     }
+    public long countAllCategories() {
+        return categoryRepository.count();
+    }
 
 }
