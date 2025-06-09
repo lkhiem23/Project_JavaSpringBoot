@@ -1,14 +1,19 @@
 package com.lehoaikhiem.controller.admin;
 
 import com.lehoaikhiem.dto.Category.CategoryDTO;
+import com.lehoaikhiem.response.ResponseFailure;
+import com.lehoaikhiem.response.ResponseSuccess;
 import com.lehoaikhiem.service.CategoryService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin/categories")
+@Validated
 public class AdminCategoryController {
 
     private final CategoryService categoryService;
@@ -17,55 +22,74 @@ public class AdminCategoryController {
         this.categoryService = categoryService;
     }
 
-    // GET /admin/categories - Get All
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
-        List<CategoryDTO> list = categoryService.findAll();
-        return ResponseEntity.ok(list);
+    public ResponseSuccess getAllCategories() {
+        try {
+            List<CategoryDTO> list = categoryService.findAll();
+            return new ResponseSuccess(HttpStatus.OK, "Category list retrieved successfully", list);
+        } catch (Exception e) {
+            return new ResponseFailure(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+        }
     }
 
-    // GET /admin/categories/{id} - findById
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
-        CategoryDTO dto = categoryService.findById(id);
-        if (dto == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category not found");
+    public ResponseSuccess getCategoryById(@PathVariable Long id) {
+        try {
+            CategoryDTO dto = categoryService.findById(id);
+            if (dto == null) {
+                return new ResponseFailure(HttpStatus.NOT_FOUND, "Category not found");
+            }
+            return new ResponseSuccess(HttpStatus.OK, "Category retrieved successfully", dto);
+        } catch (Exception e) {
+            return new ResponseFailure(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
-        return ResponseEntity.ok(dto);
     }
 
-    // POST /admin/categories - Create Category
     @PostMapping
-    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO dto) {
-        CategoryDTO saved = categoryService.save(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    public ResponseSuccess createCategory(@Valid @RequestBody CategoryDTO category) {
+        try {
+            CategoryDTO saved = categoryService.save(category);
+            return new ResponseSuccess(HttpStatus.CREATED, "Category created successfully", saved);
+        } catch (Exception e) {
+            return new ResponseFailure(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
-    // PUT /admin/categories/{id} - Update Category
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCategory(@PathVariable Long id, @RequestBody CategoryDTO dto) {
-        CategoryDTO updated = categoryService.update(id, dto);
-        if (updated == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category not found");
+    public ResponseSuccess updateCategory(@PathVariable @Min(1) Long id, @Valid @RequestBody CategoryDTO category) {
+        try {
+            CategoryDTO updated = categoryService.update(id, category);
+            if (updated == null) {
+                return new ResponseFailure(HttpStatus.NOT_FOUND, "Category not found");
+            }
+            return new ResponseSuccess(HttpStatus.OK, "Category updated successfully", updated);
+        } catch (Exception e) {
+            return new ResponseFailure(HttpStatus.BAD_REQUEST, e.getMessage());
         }
-        return ResponseEntity.ok(updated);
     }
 
-    // DELETE /admin/categories/{id} - Delete Category
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Long id) {
-        CategoryDTO existing = categoryService.findById(id);
-        if (existing == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category not found");
+    public ResponseSuccess deleteCategory(@PathVariable Long id) {
+        try {
+            CategoryDTO existing = categoryService.findById(id);
+            if (existing == null) {
+                return new ResponseFailure(HttpStatus.NOT_FOUND, "Category not found");
+            }
+            categoryService.deleteById(id);
+            // DELETE thì trả 204 No Content vẫn kèm message theo format bạn muốn
+            return new ResponseSuccess(HttpStatus.NO_CONTENT, "Category deleted successfully");
+        } catch (Exception e) {
+            return new ResponseFailure(HttpStatus.BAD_REQUEST, e.getMessage());
         }
-        categoryService.deleteById(id);
-        return ResponseEntity.ok().build();
     }
 
-    // GET /admin/categories/search?name=... - Search by Name
     @GetMapping("/search")
-    public ResponseEntity<List<CategoryDTO>> searchByName(@RequestParam("name") String name) {
-        List<CategoryDTO> results = categoryService.findByName(name);
-        return ResponseEntity.ok(results);
+    public ResponseSuccess searchByName(@RequestParam("name") String name) {
+        try {
+            List<CategoryDTO> results = categoryService.findByName(name);
+            return new ResponseSuccess(HttpStatus.OK, "Search results retrieved successfully", results);
+        } catch (Exception e) {
+            return new ResponseFailure(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+        }
     }
 }
