@@ -62,6 +62,8 @@ public class AdminProductController {
         return ResponseEntity.ok(deletedProduct);
     }
 
+
+
     // GET /admin/products/search?name=... - Search by Name
     @GetMapping("/search")
     public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam("name") String name) {
