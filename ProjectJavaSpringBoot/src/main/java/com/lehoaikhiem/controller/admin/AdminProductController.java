@@ -1,9 +1,9 @@
 package com.lehoaikhiem.controller.admin;
 
 import com.lehoaikhiem.dto.Product.ProductDTO;
+import com.lehoaikhiem.response.ResponseSuccess;
 import com.lehoaikhiem.service.ProductService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,58 +17,75 @@ public class AdminProductController {
         this.productService = productService;
     }
 
-    // Get /admin/products - Get All
+    // Get /api/admin/products - Get all products
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        List<ProductDTO> list = productService.findAllWithoutPaging();
-        return ResponseEntity.ok(list);
+    public ResponseSuccess getAllProducts(){
+        try {
+            List<ProductDTO> listProduct = productService.findAllWithoutPaging();
+            return new ResponseSuccess(HttpStatus.OK, "Product list retrieved successfully", listProduct);
+        } catch (Exception e) {
+            return new ResponseSuccess(HttpStatus.INTERNAL_SERVER_ERROR, "Error while retrieving products");
+        }
     }
 
-    // Get /admin/products/{id} - Find by Id
+    // Get /api/admin/products/{id} - Find by Id
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProductById(@PathVariable Long id) {
-        ProductDTO dto = productService.findById(id);
-        if (dto == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+    public ResponseSuccess getProductById(@PathVariable Long id){
+        try {
+            ProductDTO productDTO = productService.findById(id);
+            return new ResponseSuccess(HttpStatus.OK, "Product retrieved successfully", productDTO);
+        } catch (Exception e) {
+            return new ResponseSuccess(HttpStatus.INTERNAL_SERVER_ERROR, "Error while retrieving product");
         }
-        return ResponseEntity.ok(dto);
+
     }
 
     // POST /admin/products - Create Products
     @PostMapping
-    public ResponseEntity<?> createProduct(@RequestBody ProductDTO dto) {
-        ProductDTO createdProduct = productService.save(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+    public ResponseSuccess createProduct(@RequestBody ProductDTO productDTO){
+        try {
+            ProductDTO createdProduct = productService.save(productDTO);
+            return new ResponseSuccess(HttpStatus.CREATED, "Product created successfully", createdProduct);
+        } catch (Exception e) {
+            return new ResponseSuccess(HttpStatus.INTERNAL_SERVER_ERROR, "Error while creating product");
+        }
+
     }
 
     // PUT /admin/products/{id} - Update Products
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody ProductDTO dto) {
-        ProductDTO updatedProduct = productService.update(id, dto);
-        if (updatedProduct == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+    public ResponseSuccess updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
+        try {
+            ProductDTO updatedProduct = productService.update(id, productDTO);
+            return new ResponseSuccess(HttpStatus.OK, "Product updated successfully", updatedProduct);
+        } catch (Exception e) {
+            return new ResponseSuccess(HttpStatus.INTERNAL_SERVER_ERROR, "Error while updating product");
         }
-        return ResponseEntity.ok(updatedProduct);
+
     }
 
-    // DELETE /admin/products/{id} - Delete Category
+    // DELETE /admin/products/{id} - Delete Products
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
-        ProductDTO deletedProduct = productService.findById(id);
-        if (deletedProduct == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+    public ResponseSuccess deleteProduct(@PathVariable Long id){
+        try {
+            ProductDTO productDTO = productService.findById(id);
+            productService.deleteById(id);
+            return new ResponseSuccess(HttpStatus.NO_CONTENT, "Product deleted successfully", productDTO);
+        } catch (Exception e) {
+            return new ResponseSuccess(HttpStatus.INTERNAL_SERVER_ERROR, "Error while deleting product");
         }
-        productService.deleteById(id);
-        return ResponseEntity.ok(deletedProduct);
+
     }
-
-
 
     // GET /admin/products/search?name=... - Search by Name
     @GetMapping("/search")
-    public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam("name") String name) {
-        List<ProductDTO> results = productService.findByName(name);
-        return ResponseEntity.ok(results);
+    public ResponseSuccess getProductsByName(@RequestParam String name){
+        try {
+            List<ProductDTO> result = productService.findByName(name);
+            return new ResponseSuccess(HttpStatus.OK, "Search results Product retrieved successfully", result);
+        } catch (Exception e) {
+            return new ResponseSuccess(HttpStatus.INTERNAL_SERVER_ERROR, "Error while retrieving products");
+        }
     }
 
 }

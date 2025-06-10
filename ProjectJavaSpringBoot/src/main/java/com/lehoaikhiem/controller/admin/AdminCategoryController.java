@@ -25,10 +25,10 @@ public class AdminCategoryController {
     @GetMapping
     public ResponseSuccess getAllCategories() {
         try {
-            List<CategoryDTO> list = categoryService.findAll();
-            return new ResponseSuccess(HttpStatus.OK, "Category list retrieved successfully", list);
+            List<CategoryDTO> listCategory = categoryService.findAll();
+            return new ResponseSuccess(HttpStatus.OK, "Category list retrieved successfully", listCategory);
         } catch (Exception e) {
-            return new ResponseFailure(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return new ResponseFailure(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class AdminCategoryController {
             }
             return new ResponseSuccess(HttpStatus.OK, "Category retrieved successfully", dto);
         } catch (Exception e) {
-            return new ResponseFailure(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return new ResponseFailure(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ public class AdminCategoryController {
                 return new ResponseFailure(HttpStatus.NOT_FOUND, "Category not found");
             }
             categoryService.deleteById(id);
-            // DELETE thì trả 204 No Content vẫn kèm message theo format bạn muốn
+            // DELETE thì trả 204 No Content vẫn
             return new ResponseSuccess(HttpStatus.NO_CONTENT, "Category deleted successfully");
         } catch (Exception e) {
             return new ResponseFailure(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -89,7 +89,7 @@ public class AdminCategoryController {
             List<CategoryDTO> results = categoryService.findByName(name);
             return new ResponseSuccess(HttpStatus.OK, "Search results retrieved successfully", results);
         } catch (Exception e) {
-            return new ResponseFailure(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return new ResponseFailure(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 }
