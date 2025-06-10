@@ -5,19 +5,15 @@ import lombok.*;
 
 import java.util.Date;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "CUSTOMER")
+@SuperBuilder(toBuilder = true)
 @Data
-public class Customer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
-    @Column(name = "ID")
-    private Long id;
-
+public class Customer extends AbstractEntity{
     @Column(name = "NAME", length = 250)
     private String name;
 
@@ -38,20 +34,6 @@ public class Customer {
 
     @Column(name = "AVATAR", length = 250)
     private String avatar;
-
-    @Column(name = "CREATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Column(name = "UPDATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDate;
-
-    @Column(name = "CREATED_BY")
-    private Long createdBy;
-
-    @Column(name = "UPDATED_BY")
-    private Long updatedBy;
 
     @Column(name = "ISDELETE")
     private Boolean isDelete;

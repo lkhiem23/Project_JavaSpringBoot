@@ -10,7 +10,6 @@ import lombok.*;
 @Data
 @Builder(toBuilder = true)
 public class ProductImage {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
     @Column(name = "ID")

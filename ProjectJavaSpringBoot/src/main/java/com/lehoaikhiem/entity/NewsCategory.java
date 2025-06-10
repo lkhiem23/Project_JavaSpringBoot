@@ -2,6 +2,8 @@ package com.lehoaikhiem.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 import java.util.*;
 
 
@@ -11,11 +13,8 @@ import java.util.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "NEWS_CATEGORY")
-public class NewsCategory {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
-    @Column(name = "ID")
-    private Long id;
+@SuperBuilder(toBuilder = true)
+public class NewsCategory extends AbstractEntity{
 
     @Column(name = "NAME", length = 500)
     private String name;
@@ -41,20 +40,6 @@ public class NewsCategory {
 
     @Column(name = "META_DESCRIPTION", length = 500)
     private String metaDescription;
-
-    @Column(name = "CREATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Column(name = "UPDATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDate;
-
-    @Column(name = "CREATED_BY")
-    private Long createdBy;
-
-    @Column(name = "UPDATED_BY")
-    private Long updatedBy;
 
     @Column(name = "ISDELETE")
     private Boolean isDelete;

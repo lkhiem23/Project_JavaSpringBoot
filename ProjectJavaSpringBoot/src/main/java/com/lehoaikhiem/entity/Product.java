@@ -9,18 +9,15 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "PRODUCT")
+@SuperBuilder(toBuilder = true)
 @Data
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
-    @Column(name = "ID")
-    private Long id;
+public class Product extends AbstractEntity {
 
     @Column(name = "NAME", length = 500)
     private String name;
@@ -57,20 +54,6 @@ public class Product {
 
     @Column(name = "META_DESCRIPTION", length = 500)
     private String metaDescription;
-
-    @Column(name = "CREATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Column(name = "UPDATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDate;
-
-    @Column(name = "CREATED_BY")
-    private Long createdBy;
-
-    @Column(name = "UPDATED_BY")
-    private Long updatedBy;
 
     @Column(name = "ISDELETE")
     private Boolean isDelete;

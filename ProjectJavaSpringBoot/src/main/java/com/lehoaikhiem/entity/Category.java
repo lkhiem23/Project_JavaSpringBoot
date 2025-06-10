@@ -2,19 +2,20 @@ package com.lehoaikhiem.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "CATEGORY")
 @Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
-public class Category {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
-    @Column(name = "ID")
-    private Long id;
+public class Category extends AbstractEntity{
 
     @Column(name = "NAME", length = 500)
     private String name;
@@ -39,20 +40,6 @@ public class Category {
 
     @Column(name = "META_DESCRIPTION", length = 300)
     private String metaDescription;
-
-    @Column(name = "CREATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Column(name = "UPDATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDate;
-
-    @Column(name = "CREATED_BY")
-    private Long createdBy;
-
-    @Column(name = "UPDATED_BY")
-    private Long updatedBy;
 
     @Column(name = "ISDELETE")
     private Boolean isDelete;

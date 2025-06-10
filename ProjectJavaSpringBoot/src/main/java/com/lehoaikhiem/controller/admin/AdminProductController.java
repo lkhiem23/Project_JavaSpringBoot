@@ -70,7 +70,7 @@ public class AdminProductController {
         try {
             ProductDTO productDTO = productService.findById(id);
             productService.deleteById(id);
-            return new ResponseSuccess(HttpStatus.NO_CONTENT, "Product deleted successfully", productDTO);
+            return new ResponseSuccess(HttpStatus.OK, "Product deleted successfully", productDTO);
         } catch (Exception e) {
             return new ResponseSuccess(HttpStatus.INTERNAL_SERVER_ERROR, "Error while deleting product");
         }

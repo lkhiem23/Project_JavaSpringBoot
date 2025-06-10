@@ -2,20 +2,16 @@ package com.lehoaikhiem.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Date;
+import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor // <-- Giữ lại cái này nếu JPA cần constructor mặc định
 @Entity
 @Table(name = "NEWS")
-@Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
-@Builder(toBuilder = true)
-public class News {
+@Data // Tạo getter, setter, toString, equals, hashcode tự động
+@SuperBuilder(toBuilder = true) // <-- PHẢI LÀ @SuperBuilder cho lớp kế thừa
+@EqualsAndHashCode(callSuper = true) // <-- RẤT QUAN TRỌNG VỚI @Data VÀ KẾ THỪA
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
-    @Column(name = "ID")
-    private Long id;
+public class News extends AbstractEntity {
 
     @Column(name = "NAME", length = 500)
     private String name;
@@ -44,20 +40,6 @@ public class News {
 
     @Column(name = "META_DESCRIPTION", length = 500)
     private String metaDescription;
-
-    @Column(name = "CREATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Column(name = "UPDATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDate;
-
-    @Column(name = "CREATED_BY")
-    private Long createdBy;
-
-    @Column(name = "UPDATED_BY")
-    private Long updatedBy;
 
     @Column(name = "ISDELETE")
     private Boolean isDelete;

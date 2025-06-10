@@ -12,26 +12,13 @@ import java.util.Date;
 @Entity
 @Table(name = "PAYMENT_METHOD")
 @Data // Lombok annotation giúp tạo getter, setter, toString, equals, hashcode tự động
-public class PaymentMethod {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment ID
-    @Column(name = "ID")
-    private Long id;
+public class PaymentMethod  extends AbstractEntity{
 
     @Column(name = "NAME", length = 250)
     private String name;
 
     @Column(name = "NOTES", columnDefinition = "TEXT")
     private String notes;
-
-    @Column(name = "CREATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Column(name = "UPDATED_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDate;
 
     @Column(name = "ISDELETE")
     private Boolean isDelete;
