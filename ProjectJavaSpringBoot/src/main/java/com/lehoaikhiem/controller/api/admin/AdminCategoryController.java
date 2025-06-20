@@ -1,8 +1,8 @@
 package com.lehoaikhiem.controller.api.admin;
 
 import com.lehoaikhiem.dto.Category.CategoryDTO;
-import com.lehoaikhiem.response.ResponseFailure;
-import com.lehoaikhiem.response.ResponseSuccess;
+import com.lehoaikhiem.payload.response.ResponseFailure;
+import com.lehoaikhiem.payload.response.ResponseSuccess;
 import com.lehoaikhiem.service.CategoryService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;

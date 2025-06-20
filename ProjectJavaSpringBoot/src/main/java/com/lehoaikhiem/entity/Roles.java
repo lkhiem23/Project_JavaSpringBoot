@@ -2,21 +2,25 @@ package com.lehoaikhiem.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-
-@Getter
-@Setter
 @Entity
 @Table(name = "roles")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id; // Thay đổi từ Long sang Integer để khớp với JpaRepository<Roles, Integer>
 
-    private String name; // Ví dụ: "ADMIN", "USER"
+    @Enumerated(EnumType.STRING) // Annotation này chỉ định cách Enum được lưu trong DB (dưới dạng chuỗi)
+    @Column(length = 20)
+    private ERole name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    public Roles(ERole name) {
+        this.name = name;
+    }
+
 }

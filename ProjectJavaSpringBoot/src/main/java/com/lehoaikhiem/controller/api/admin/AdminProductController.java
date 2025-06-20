@@ -1,7 +1,7 @@
 package com.lehoaikhiem.controller.api.admin;
 
 import com.lehoaikhiem.dto.Product.ProductDTO;
-import com.lehoaikhiem.response.ResponseSuccess;
+import com.lehoaikhiem.payload.response.ResponseSuccess;
 import com.lehoaikhiem.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

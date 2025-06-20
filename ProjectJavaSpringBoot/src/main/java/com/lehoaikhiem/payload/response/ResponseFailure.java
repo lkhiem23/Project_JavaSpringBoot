@@ -1,4 +1,4 @@
-package com.lehoaikhiem.response;
+package com.lehoaikhiem.payload.response;
 
 import org.springframework.http.HttpStatus;
 

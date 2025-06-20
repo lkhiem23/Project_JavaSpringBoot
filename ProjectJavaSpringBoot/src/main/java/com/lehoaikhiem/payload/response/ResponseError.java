@@ -1,4 +1,4 @@
-package com.lehoaikhiem.response;
+package com.lehoaikhiem.payload.response;
 
 public class ResponseError extends ResponseData{
     public ResponseError(int status, String message) {
