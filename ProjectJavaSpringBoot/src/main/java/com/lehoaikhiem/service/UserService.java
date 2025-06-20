@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -42,5 +43,17 @@ public class UserService {
         user.setRoles(Collections.singleton(role));
 
         return usersRepository.save(user);
+    }
+
+    public Boolean existsByUsername(String username) {
+        return usersRepository.existsByUsername(username);
+    }
+
+    public Boolean existsByEmail(String email) {
+        return usersRepository.existsByEmail(email);
+    }
+
+    public Optional<User> findByUsername(String username) {
+        return usersRepository.findByUsername(username);
     }
 }

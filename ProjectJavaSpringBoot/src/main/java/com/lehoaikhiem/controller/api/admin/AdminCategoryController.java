@@ -1,4 +1,4 @@
-package com.lehoaikhiem.controller.admin;
+package com.lehoaikhiem.controller.api.admin;
 
 import com.lehoaikhiem.dto.Category.CategoryDTO;
 import com.lehoaikhiem.response.ResponseFailure;
