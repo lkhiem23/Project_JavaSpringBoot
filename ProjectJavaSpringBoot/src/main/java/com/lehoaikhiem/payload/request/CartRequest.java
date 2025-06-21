@@ -1,4 +1,4 @@
-package com.lehoaikhiem.dto.Cart;
+package com.lehoaikhiem.payload.request;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartDTO {
+public class CartRequest {
     @NotNull(message = "Product ID cannot be null")
     private Long productId;
 

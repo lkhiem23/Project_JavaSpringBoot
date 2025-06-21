@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "PRODUCTS")
 @SuperBuilder(toBuilder = true)
 @Data
 public class Product extends AbstractEntity {
@@ -37,7 +37,7 @@ public class Product extends AbstractEntity {
     @Column(name = "CONTENTS", columnDefinition = "TEXT")
     private String contents;
 
-    @Column(name = "PRICE")
+    @Column(name = "PRICE", precision = 10, scale = 2)
     private BigDecimal price;
 
     @Column(name = "QUANTITY")

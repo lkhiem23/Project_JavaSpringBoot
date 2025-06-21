@@ -32,7 +32,6 @@ public class LoginController {
             return "redirect:/SignUp";
         }
     }
-
     //Login
     @GetMapping("/login")
     public String showLoginPage() {
