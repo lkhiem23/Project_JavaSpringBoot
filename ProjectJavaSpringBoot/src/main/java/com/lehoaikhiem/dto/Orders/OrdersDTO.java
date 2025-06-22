@@ -2,11 +2,19 @@ package com.lehoaikhiem.dto.Orders;
 
 import com.lehoaikhiem.dto.OrdersDetail.OrdersDetailDTO;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrdersDTO {
     private Long id;
 

@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartRequest {
+
     @NotNull(message = "Product ID cannot be null")
     private Long productId;
 

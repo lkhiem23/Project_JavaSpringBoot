@@ -36,4 +36,14 @@ public class OrdersDetail {
 
     @Column(name = "RETURN_QTY")
     private Integer returnQty;
+
+    // Constructor tiện lợi cho việc tạo OrdersDetail mới
+    public OrdersDetail(Orders order, Product product, BigDecimal price, Integer qty) {
+        this.order = order;
+        this.product = product;
+        this.price = price;
+        this.qty = qty;
+        this.total = price.multiply(BigDecimal.valueOf(qty));
+        this.returnQty = 0;
+    }
 }
